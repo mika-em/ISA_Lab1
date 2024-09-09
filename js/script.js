@@ -114,15 +114,10 @@ class Button {
 
     move(windowWidth, windowHeight) {
         this.element.style.position = "absolute";
-        let buttonDimensions = [
-            this.element.offsetWidth,
-            this.element.offsetHeight
-        ];
-        let randomX = Math.floor(Math.random() * (windowWidth - buttonDimensions[0]));
-        let randomY = Math.floor(Math.random() * (windowHeight - buttonDimensions[1]));
-
-        randomX = Math.max(0, Math.min(randomX, windowWidth - buttonDimensions[0]));
-        randomY = Math.max(0, Math.min(randomY, windowHeight - buttonDimensions[1]))
+        let buttonWidth = this.element.offsetWidth;
+        let buttonHeight = this.element.offsetHeight;
+        let randomX = Math.floor(Math.random() * (windowWidth - buttonWidth));
+        let randomY = Math.floor(Math.random() * (windowHeight - buttonHeight));
         this.element.style.left = `${randomX}px`;
         this.element.style.top = `${randomY}px`;
     }
