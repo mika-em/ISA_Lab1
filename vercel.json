@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+      {
+        "source": "COMP4537/labs/0",
+        "destination": "/labs/0/index.html"
+      }
+    ]
+  }

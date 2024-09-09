@@ -37,19 +37,18 @@ class Game {
         this.disableButtons(true);
 
         let scrambleCount = 0;
-        const scrambleInterval = setTimeout(() => {
+        const scrambleInterval = setInterval(() => {
             if (scrambleCount < this.numOfButtons) {
-            this.buttonArray.forEach(
-                button => {
+                this.buttonArray.forEach(button => {
                     button.move(windowWidth, windowHeight);
                     button.removeNumber();
                 });
                 scrambleCount++;
             } else {
                 clearInterval(scrambleInterval);
-                this.disableButtons(false)
+                this.disableButtons(false);
             }
-        }, 2000);;
+        }, 2000);
     }
 
     getRandomColor() {
