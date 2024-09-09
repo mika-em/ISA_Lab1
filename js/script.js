@@ -1,3 +1,4 @@
+//Note: Chat-GPT was used 
 function startGame() {
     const game = new Game();
     game.createButtons();
@@ -9,7 +10,7 @@ class Game {
         this.buttonArray = [];
         this.uiHandler = new UIHandler();
         this.numOfButtons = this.uiHandler.howManyButtonsInput();
-        this.colorOptions = ['#FF5733', '#33FF57', '#3357FF', '#FF33A1', '#F1C40F', '#9B59B6', '#1ABC9C'];
+        this.colorOptions = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#8B00FF'];
         this.userOrder = [];
         this.userOrderIndex = 0;
         window.addEventListener("windowResize", () => this.onWindowResize());
