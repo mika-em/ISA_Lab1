@@ -28,7 +28,7 @@ class Game {
         this.colorOptions = ['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#8B00FF'];
         this.userOrder = [];
         this.userOrderIndex = 0;
-        window.addEventListener("windowResize", () => this.onWindowResize());
+        window.addEventListener("resize", () => this.onWindowResize());
     }
 
     createButtons() {
@@ -64,12 +64,6 @@ class Game {
         this.disableButtons(true); 
 
         let scrambleCount = 0; // scrambleCount keeps count of how many times the buttons have been scrambled
-        //how does the setInterval method work?
-        // setInterval() method calls a function or 
-        //evaluates an expression at specified intervals (in milliseconds).
-
-        //the interval runs until the scramble count is equal to the number of buttons
-        //the interval runs every 2000 milliseconds, 2 seconds
         const scrambleInterval = setInterval(() => {
             if (scrambleCount < this.numOfButtons) {
                 this.buttonArray.forEach(button => {
