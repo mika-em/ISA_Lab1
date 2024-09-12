@@ -150,7 +150,7 @@ class Button {
         let buttonHeight = this.element.offsetHeight;
         
         let randomX = Math.floor(Math.random() * (windowWidth - buttonWidth));
-        let randomY = Math.floor(Math.random() * (windowHeight - buttonHeight - 5));
+        let randomY = Math.floor(Math.random() * (windowHeight - buttonHeight));
         this.element.style.left = `${randomX}px`;
         this.element.style.top = `${randomY}px`;
     }
