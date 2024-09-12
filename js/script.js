@@ -151,8 +151,8 @@ class Button {
         
         let randomX = Math.floor(Math.random() * (windowWidth - buttonWidth));
         let randomY = Math.floor(Math.random() * (windowHeight - buttonHeight));
-        this.element.style.left = `${randomX}px`;
-        this.element.style.top = `${randomY}px`;
+        this.element.style.left = `${Math.max(0, randomX)}px`;
+        this.element.style.top = `${Math.max(0, randomY)}px`;
     }
 
     removeNumber() {
