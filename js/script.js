@@ -88,10 +88,10 @@ class Game {
         let width = window.innerWidth;
         let height = window.innerHeight;
         this.buttonArray.forEach(button => {
-            button.move(width, height)
+            button.reposition(width, height);
         });
     }
-t
+
     addClickListeners() {
         this.buttonArray.forEach((button) => {
             button.element.addEventListener("click", () => this.handleClick(button))
@@ -130,6 +130,8 @@ class Button {
         this.element = document.createElement("button");
         this.number = number;
         this.color = color;
+        this.relativeX = 0;
+        this.relativeY = 0;
     }
 
     createButtonElement() {
@@ -142,13 +144,26 @@ class Button {
         this.element.style.position = "absolute";
         let buttonWidth = this.element.offsetWidth;
         let buttonHeight = this.element.offsetHeight;
-        
+
+
         let randomX = Math.floor(Math.random() * (windowWidth - buttonWidth));
         let randomY = Math.floor(Math.random() * (windowHeight - buttonHeight));
+
+        this.relativeX = randomX / windowWidth;
+        this.relativeY = randomY / windowHeight;
+
         this.element.style.left = `${Math.max(0, randomX)}px`;
         this.element.style.top = `${Math.max(0, randomY)}px`;
     }
 
+    reposition(windowWidth, windowHeight) {
+        let newX = Math.max(0, this.relativeX * windowWidth);
+        let newY = Math.max(0, this.relativeY * windowHeight);
+
+        this.element.style.left = `${newX}px`;
+        this.element.style.top = `${newY}px`;
+    }
+}
     removeNumber() {
         this.element.innerText = "";
     }
