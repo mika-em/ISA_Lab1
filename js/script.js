@@ -1,11 +1,26 @@
 //Note: Chat-GPT was used 
+
+/**
+ * Starts the game by creating a new Game object,
+ * creating the buttons, and then scrambling them.
+ */
 function startGame() {
     const game = new Game();
     game.createButtons();
     game.scrambleButtons();
 }
 
+/**
+ * The Game class handles the game logic,
+ * which includes creating buttons, scrambling them,
+ * and user interaction with the buttons.
+ */
 class Game {
+    /**
+     * Initializes the Game object with an empty button array,
+     * a new UIHandler object, and the number of buttons
+     * the user wants to play with (which is obtained from the UI).
+     */
     constructor() {
         this.buttonArray = [];
         this.uiHandler = new UIHandler();
@@ -17,6 +32,11 @@ class Game {
     }
 
     createButtons() {
+        /**
+         * Creates buttons by first clearing the button container,
+         * then creating a new button with a random color from the colorOptions array,
+         * and adding a click listener to the button.
+         */
         document.getElementById("buttonContainer").innerHTML = '';
         this.buttonArray = [];
         this.userOrder = [];
@@ -25,19 +45,31 @@ class Game {
         for (let i = 1; i <= this.numOfButtons; i++) {
             let color = this.getRandomColor();
             let button = new Button(i, color);
-            button.createButtonElement();
+            button.createButtonElement(); //how does the createButtonElement method work?
             this.buttonArray.push(button);
         }
-        this.addClickListeners();
+        this.addClickListeners(); //how does the addClickListeners method work?
     }
 
     scrambleButtons() {
+        /**
+         * Scrambles the buttons by moving them to random positions
+         * on the screen. The buttons are disabled while they are
+         * being scrambled, and then enabled again once the scramble
+         * is complete.
+         */
         let windowWidth = window.innerWidth;
         let windowHeight = window.innerHeight;
 
-        this.disableButtons(true);
+        this.disableButtons(true); 
 
-        let scrambleCount = 0;
+        let scrambleCount = 0; // scrambleCount keeps count of how many times the buttons have been scrambled
+        //how does the setInterval method work?
+        // setInterval() method calls a function or 
+        //evaluates an expression at specified intervals (in milliseconds).
+
+        //the interval runs until the scramble count is equal to the number of buttons
+        //the interval runs every 2000 milliseconds, 2 seconds
         const scrambleInterval = setInterval(() => {
             if (scrambleCount < this.numOfButtons) {
                 this.buttonArray.forEach(button => {
@@ -54,7 +86,7 @@ class Game {
 
     getRandomColor() {
         console.log("color options", this.colorOptions);
-        const random = Math.floor(Math.random() * this.colorOptions.length);
+        const random = Math.floor(Math.random() * this.colorOptions.length); //generate number between 0 and 7, exclusive
         return this.colorOptions.splice(random, 1)[0];
     }
 
@@ -65,7 +97,7 @@ class Game {
             button.move(width, height)
         });
     }
-
+t
     addClickListeners() {
         this.buttonArray.forEach((button) => {
             button.element.addEventListener("click", () => this.handleClick(button))
@@ -116,8 +148,9 @@ class Button {
         this.element.style.position = "absolute";
         let buttonWidth = this.element.offsetWidth;
         let buttonHeight = this.element.offsetHeight;
+        
         let randomX = Math.floor(Math.random() * (windowWidth - buttonWidth));
-        let randomY = Math.floor(Math.random() * (windowHeight - buttonHeight));
+        let randomY = Math.floor(Math.random() * (windowHeight - buttonHeight - 5));
         this.element.style.left = `${randomX}px`;
         this.element.style.top = `${randomY}px`;
     }
